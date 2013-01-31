@@ -23,8 +23,12 @@ public class BinaryNumber {
         this.digits = digits;
     }
 
+    public static BinaryNumber getZero(int digitCapacity) {
+        return new BinaryNumber(digitCapacity, new byte[digitCapacity]);
+    }
+
     public static BinaryNumber fromBinaryString(String binaryString, int digitCapacity) {
-        Assert.checkTrue(binaryString.matches("(1|0)+"), "String must be binary.");
+        Assert.checkTrue(binaryString.length() <= digitCapacity, "Digit capacity too small.");
 
         byte[] digits = new byte[digitCapacity];
         int fromDigit = digitCapacity - binaryString.length();
