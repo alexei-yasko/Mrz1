@@ -22,12 +22,51 @@ public class Processor {
 
     private static final String PROCESSING_ITEM_PATTERN = "\\[(\\d+)\\s*\\*\\s*(\\d+)\\]";
 
+    private List<ProcessorElement> processorElements;
+
     private List<ProcessingItem> processingItems;
 
     private int digitCapacity;
 
     public Processor(String dataFile) {
         loadData(dataFile);
+        initProcessorElements();
+    }
+
+    public void processData() {
+        int tactNumber = 0;
+
+        int processedElementNumber = 0;
+
+        while (processedElementNumber < processingItems.size()) {
+            tactNumber++;
+
+            for (int i = processedElementNumber; i < processingItems.size(); i++) {
+                if (i >= tactNumber) {
+                    break;
+                }
+
+                ProcessingItem processingItem = processingItems.get(i);
+                ProcessorElement processorElement = processorElements.get(tactNumber - i - 1);
+
+                processorElement.process(processingItem);
+
+                log(processingItem, processorElement, tactNumber);
+            }
+
+            if (tactNumber % processorElements.size() - processedElementNumber == 0) {
+                processedElementNumber++;
+            }
+        }
+    }
+
+    private void initProcessorElements() {
+        processorElements = new ArrayList<ProcessorElement>();
+
+        for (int i = 0; i < digitCapacity; i++) {
+            processorElements.add(new Summator(i * 2 + 1));
+            processorElements.add(new ShiftElement((i * 2 + 1) + 1));
+        }
     }
 
     private void loadData(String dataFile) {
@@ -73,5 +112,17 @@ public class Processor {
         }
 
         return processingItems;
+    }
+
+    private void log(ProcessingItem processingItem, ProcessorElement processorElement, int tactNumber) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("tact number '").append(tactNumber).append("'").append("\n");
+        stringBuilder.append(processorElement.getName()).append(" (").append(processorElement.getNumber()).append(")\n");
+
+        stringBuilder.append(processingItem.getFactor()).append("\n");
+        stringBuilder.append(processingItem.getMultiplicand()).append("\n");
+        stringBuilder.append(processingItem.getPartialSum()).append("\n");
+
+        System.out.println(stringBuilder.toString());
     }
 }

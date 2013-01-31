@@ -11,5 +11,6 @@ public class Main {
 
     public static void main(String[] args) {
         Processor processor = new Processor(DATA_FILE);
+        processor.processData();
     }
 }
