@@ -1,0 +1,12 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.srplib:srp-contract:0.3.2"
+
+    testCompile "junit:junit:4.10"
+}
+
