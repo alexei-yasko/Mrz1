@@ -1,3 +1,5 @@
+package mrz.lab1.binary;
+
 import org.junit.Assert;
 import org.junit.Test;
 

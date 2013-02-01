@@ -19,6 +19,9 @@ public class ProcessingItem {
         this.partialSum = BinaryNumber.getZero(factor.getDigitCapacity() + multiplicand.getDigitCapacity() + 1);
     }
 
+    public ProcessingItem() {
+    }
+
     public BinaryNumber getFactor() {
         return factor;
     }

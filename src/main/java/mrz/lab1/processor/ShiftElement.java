@@ -1,5 +1,7 @@
 package mrz.lab1.processor;
 
+import mrz.lab1.binary.BinaryNumber;
+
 /**
  * @author Q-YAA
  */
@@ -13,7 +15,15 @@ public class ShiftElement implements ProcessorElement {
 
     @Override
     public void process(ProcessingItem processingItem) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        BinaryNumber partialSum = processingItem.getPartialSum();
+
+        byte[] digits = partialSum.getDigits();
+        byte[] shiftDigits = new byte[digits.length];
+
+        System.arraycopy(digits, 0, shiftDigits, 1, digits.length - 1);
+        shiftDigits[0] = digits[digits.length - 1];
+
+        processingItem.setPartialSum(new BinaryNumber(partialSum.getDigitCapacity(), shiftDigits));
     }
 
     @Override

@@ -30,7 +30,7 @@ public class Processor {
 
     public Processor(String dataFile) {
         loadData(dataFile);
-        initProcessorElements();
+        initProcessorElements(digitCapacity);
     }
 
     public void processData() {
@@ -57,10 +57,12 @@ public class Processor {
             if (tactNumber % processorElements.size() - processedElementNumber == 0) {
                 processedElementNumber++;
             }
+
+            log("------------------------- (%s) ---------------------------", tactNumber);
         }
     }
 
-    private void initProcessorElements() {
+    private void initProcessorElements(int digitCapacity) {
         processorElements = new ArrayList<ProcessorElement>();
 
         for (int i = 0; i < digitCapacity; i++) {
@@ -125,4 +127,9 @@ public class Processor {
 
         System.out.println(stringBuilder.toString());
     }
+
+    private void log(String message, Object... objects) {
+        System.out.println(String.format(message, objects));
+    }
+
 }
