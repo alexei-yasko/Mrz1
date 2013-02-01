@@ -67,8 +67,8 @@ public class Processor {
         processorElements = new ArrayList<ProcessorElement>();
 
         for (int i = 0; i < digitCapacity; i++) {
-            processorElements.add(new Summator(i + 1));
-            processorElements.add(new ShiftElement(i + 1));
+            processorElements.add(new Summator(i * 2 + 1));
+            processorElements.add(new ShiftElement(i * 2 + 2));
         }
     }
 
