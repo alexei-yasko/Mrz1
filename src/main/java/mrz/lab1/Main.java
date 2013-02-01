@@ -10,10 +10,11 @@ import mrz.lab1.processor.Processor;
  */
 public class Main {
 
-    private static String DATA_FILE = "data/data.txt";
-
     public static void main(String[] args) {
-        Processor processor = new Processor(DATA_FILE);
+        String dataFile = args[0];
+//        String dataFile = "data/data.txt";
+
+        Processor processor = new Processor(dataFile);
         List<ProcessingItem> result = processor.processData();
 
         System.out.println("\n------------------------- Result -------------------------\n");
