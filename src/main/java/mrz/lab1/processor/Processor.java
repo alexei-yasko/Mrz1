@@ -40,7 +40,7 @@ public class Processor {
 
         while (processedElementNumber < processingItems.size()) {
             tactNumber++;
-            log("------------------------- (%s) ---------------------------", tactNumber);
+            log("\n------------------------- (%s) ---------------------------\n", tactNumber);
 
             for (int i = processedElementNumber; i < processingItems.size(); i++) {
                 if (i >= tactNumber) {
@@ -67,8 +67,8 @@ public class Processor {
         processorElements = new ArrayList<ProcessorElement>();
 
         for (int i = 0; i < digitCapacity; i++) {
-            processorElements.add(new Summator(i));
-            processorElements.add(new ShiftElement(i));
+            processorElements.add(new Summator(i + 1));
+            processorElements.add(new ShiftElement(i + 1));
         }
     }
 

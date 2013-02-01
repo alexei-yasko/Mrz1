@@ -19,7 +19,7 @@ public class Summator implements ProcessorElement {
         BinaryNumber partialSum = processingItem.getPartialSum();
         BinaryNumber factor = processingItem.getFactor();
 
-        if (factor.getDigits()[factor.getDigitCapacity() - number - 1] == 1) {
+        if (factor.getDigits()[factor.getDigitCapacity() - number] == 1) {
             int digitsToSumLength = (partialSum.getDigitCapacity()) / 2 + 1;
             byte[] digitsToSum = new byte[digitsToSumLength];
 

@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'idea'
 
 repositories {
     mavenCentral()
@@ -11,3 +12,11 @@ dependencies {
     testCompile "junit:junit:4.10"
 }
 
+jar {
+
+    manifest {
+        attributes 'Implementation-Title': 'Mrz1', 'Main-Class': 'mrz.lab1.Main'
+    }
+
+    from configurations.compile.collect { zipTree(it) }
+}
