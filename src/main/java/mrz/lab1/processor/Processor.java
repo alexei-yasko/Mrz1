@@ -33,13 +33,14 @@ public class Processor {
         initProcessorElements(digitCapacity);
     }
 
-    public void processData() {
+    public List<ProcessingItem> processData() {
         int tactNumber = 0;
 
         int processedElementNumber = 0;
 
         while (processedElementNumber < processingItems.size()) {
             tactNumber++;
+            log("------------------------- (%s) ---------------------------", tactNumber);
 
             for (int i = processedElementNumber; i < processingItems.size(); i++) {
                 if (i >= tactNumber) {
@@ -57,17 +58,17 @@ public class Processor {
             if (tactNumber % processorElements.size() - processedElementNumber == 0) {
                 processedElementNumber++;
             }
-
-            log("------------------------- (%s) ---------------------------", tactNumber);
         }
+
+        return processingItems;
     }
 
     private void initProcessorElements(int digitCapacity) {
         processorElements = new ArrayList<ProcessorElement>();
 
         for (int i = 0; i < digitCapacity; i++) {
-            processorElements.add(new Summator(i * 2 + 1));
-            processorElements.add(new ShiftElement((i * 2 + 1) + 1));
+            processorElements.add(new Summator(i));
+            processorElements.add(new ShiftElement(i));
         }
     }
 

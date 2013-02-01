@@ -23,6 +23,23 @@ public class BinaryNumber {
         this.digits = digits;
     }
 
+    public static BinaryNumber sum(BinaryNumber first, BinaryNumber second, int digitCapacity) {
+        return fromInt(toInt(first) + toInt(second), digitCapacity);
+    }
+
+    public static String digitsToString(BinaryNumber binaryNumber) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (byte digit : binaryNumber.getDigits()) {
+            stringBuilder.append(Byte.toString(digit));
+        }
+
+        return stringBuilder.toString();
+    }
+
+    public static int toInt(BinaryNumber binaryNumber) {
+        return Integer.parseInt(digitsToString(binaryNumber), 2);
+    }
+
     public static BinaryNumber getZero(int digitCapacity) {
         return new BinaryNumber(digitCapacity, new byte[digitCapacity]);
     }
@@ -40,12 +57,12 @@ public class BinaryNumber {
         return new BinaryNumber(digitCapacity, digits);
     }
 
-    public static BinaryNumber fromDecimalInt(int decimalNumber, int digitCapacity) {
+    public static BinaryNumber fromInt(int decimalNumber, int digitCapacity) {
         return fromBinaryString(Integer.toBinaryString(decimalNumber), digitCapacity);
     }
 
     public static BinaryNumber fromDecimalString(String decimalString, int digitCapacity) {
-        return fromDecimalInt(Integer.parseInt(decimalString), digitCapacity);
+        return fromInt(Integer.parseInt(decimalString), digitCapacity);
     }
 
     public byte[] getDigits() {

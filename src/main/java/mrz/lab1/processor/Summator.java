@@ -15,7 +15,21 @@ public class Summator implements ProcessorElement {
 
     @Override
     public void process(ProcessingItem processingItem) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        BinaryNumber multiplicand = processingItem.getMultiplicand();
+        BinaryNumber partialSum = processingItem.getPartialSum();
+        BinaryNumber factor = processingItem.getFactor();
+
+        if (factor.getDigits()[factor.getDigitCapacity() - number - 1] == 1) {
+            int digitsToSumLength = (partialSum.getDigitCapacity()) / 2 + 1;
+            byte[] digitsToSum = new byte[digitsToSumLength];
+
+            System.arraycopy(partialSum.getDigits(), 0, digitsToSum, 0, digitsToSumLength);
+
+            BinaryNumber sumResult =
+                BinaryNumber.sum(new BinaryNumber(digitsToSumLength, digitsToSum), multiplicand, digitsToSumLength);
+
+            System.arraycopy(sumResult.getDigits(), 0, partialSum.getDigits(), 0, digitsToSumLength);
+        }
     }
 
     @Override
