@@ -41,30 +41,8 @@ public class Processor {
     }
 
     public List<ProcessingItem> processData() {
-        int tactNumber = 0;
-
-        int processedElementNumber = 0;
-
-        while (processedElementNumber < processingItems.size()) {
-            tactNumber++;
-            log("\n------------------------- (%s) ---------------------------\n", tactNumber);
-
-            for (int i = processedElementNumber; i < processingItems.size(); i++) {
-                if (i >= tactNumber) {
-                    break;
-                }
-
-                ProcessingItem processingItem = processingItems.get(i);
-                ProcessorElement processorElement = processorElements.get(tactNumber - i - 1);
-
-                processorElement.process(processingItem);
-
-                log(processingItem, processorElement, tactNumber);
-            }
-
-            if (tactNumber % processorElements.size() - processedElementNumber == 0) {
-                processedElementNumber++;
-            }
+        while (!isProcessingFinished()) {
+            nextTact();
         }
 
         return processingItems;
