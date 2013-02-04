@@ -9,6 +9,8 @@ public class Summator implements ProcessorElement {
 
     private int number;
 
+    private ProcessingItem state;
+
     public Summator(int number) {
         this.number = number;
     }
@@ -30,6 +32,8 @@ public class Summator implements ProcessorElement {
 
             System.arraycopy(sumResult.getDigits(), 0, partialSum.getDigits(), 0, digitsToSumLength);
         }
+
+        state = processingItem;
     }
 
     @Override
@@ -40,5 +44,10 @@ public class Summator implements ProcessorElement {
     @Override
     public int getNumber() {
         return number;
+    }
+
+    @Override
+    public ProcessingItem getState() {
+        return state;
     }
 }

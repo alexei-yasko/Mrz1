@@ -28,7 +28,14 @@ public class Processor {
 
     private int digitCapacity;
 
+    private int tactNumber;
+
+    private int processedElementNumber;
+
     public Processor(String dataFile) {
+        this.tactNumber = 0;
+        this.processedElementNumber = 0;
+
         loadData(dataFile);
         initProcessorElements(digitCapacity);
     }
@@ -61,6 +68,45 @@ public class Processor {
         }
 
         return processingItems;
+    }
+
+    public List<ProcessingItem> nextTact() {
+        if (!isProcessingFinished()) {
+            tactNumber++;
+
+            log("\n------------------------- (%s) ---------------------------\n", tactNumber);
+
+            for (int i = processedElementNumber; i < processingItems.size(); i++) {
+                if (i >= tactNumber) {
+                    break;
+                }
+
+                ProcessingItem processingItem = processingItems.get(i);
+                ProcessorElement processorElement = processorElements.get(tactNumber - i - 1);
+
+                processorElement.process(processingItem);
+
+                log(processingItem, processorElement, tactNumber);
+            }
+
+            if (tactNumber % processorElements.size() - processedElementNumber == 0) {
+                processedElementNumber++;
+            }
+        }
+
+        return processingItems;
+    }
+
+    public boolean isProcessingFinished() {
+        return processedElementNumber >= processingItems.size();
+    }
+
+    public List<ProcessorElement> getProcessorElements() {
+        return processorElements;
+    }
+
+    public int getTactNumber() {
+        return tactNumber;
     }
 
     private void initProcessorElements(int digitCapacity) {

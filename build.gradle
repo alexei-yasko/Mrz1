@@ -15,7 +15,7 @@ dependencies {
 jar {
 
     manifest {
-        attributes 'Implementation-Title': 'Mrz1', 'Main-Class': 'mrz.lab1.Main'
+        attributes 'Implementation-Title': 'Mrz1', 'Main-Class': 'mrz.lab1.MainUi'
     }
 
     from configurations.compile.collect { zipTree(it) }

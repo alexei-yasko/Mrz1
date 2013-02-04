@@ -9,6 +9,8 @@ public class ShiftElement implements ProcessorElement {
 
     private int number;
 
+    private ProcessingItem state;
+
     public ShiftElement(int number) {
         this.number = number;
     }
@@ -24,6 +26,8 @@ public class ShiftElement implements ProcessorElement {
         shiftDigits[0] = digits[digits.length - 1];
 
         processingItem.setPartialSum(new BinaryNumber(partialSum.getDigitCapacity(), shiftDigits));
+
+        state = processingItem;
     }
 
     @Override
@@ -34,5 +38,10 @@ public class ShiftElement implements ProcessorElement {
     @Override
     public int getNumber() {
         return number;
+    }
+
+    @Override
+    public ProcessingItem getState() {
+        return state;
     }
 }

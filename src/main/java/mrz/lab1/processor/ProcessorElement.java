@@ -10,4 +10,6 @@ public interface ProcessorElement {
     String getName();
 
     int getNumber();
+
+    ProcessingItem getState();
 }
