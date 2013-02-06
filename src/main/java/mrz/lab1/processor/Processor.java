@@ -49,6 +49,11 @@ public class Processor {
     }
 
     public List<ProcessingItem> nextTact() {
+
+        for (ProcessorElement processorElement : processorElements) {
+            processorElement.setState(null);
+        }
+
         if (!isProcessingFinished()) {
             tactNumber++;
 

@@ -12,4 +12,6 @@ public interface ProcessorElement {
     int getNumber();
 
     ProcessingItem getState();
+
+    void setState(ProcessingItem processingItem);
 }

@@ -44,4 +44,9 @@ public class ShiftElement implements ProcessorElement {
     public ProcessingItem getState() {
         return state;
     }
+
+    @Override
+    public void setState(ProcessingItem processingItem) {
+        state = processingItem;
+    }
 }
