@@ -11,15 +11,27 @@ import javax.swing.JPanel;
  */
 public class ProcessorElementsContainer extends JPanel {
 
+    private Box verticalBox;
+
     public ProcessorElementsContainer(List<ProcessorElementUi> processorElementsUi) {
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        Box verticalBox = Box.createVerticalBox();
+        verticalBox = Box.createVerticalBox();
+
+        initializeContainer(processorElementsUi);
+
+        add(verticalBox);
+    }
+
+    public void setElements(List<ProcessorElementUi> processorElementsUi) {
+        verticalBox.removeAll();
+        initializeContainer(processorElementsUi);
+    }
+
+    private void initializeContainer(List<ProcessorElementUi> processorElementsUi) {
         for (ProcessorElementUi processorElementUi : processorElementsUi) {
             verticalBox.add(Box.createVerticalStrut(20));
             verticalBox.add(processorElementUi);
         }
-
-        add(verticalBox);
     }
 }

@@ -15,19 +15,19 @@ import mrz.lab1.processor.ProcessorElement;
  */
 public class ProcessorElementUi extends JPanel {
 
+    private static final int DEFAULT_WIDTH = 400;
+    private static final int DEFAULT_HEIGHT = 50;
+
     private ProcessorElement processorElement;
 
     public ProcessorElementUi(ProcessorElement processorElement) {
         this.processorElement = processorElement;
 
-        setPreferredSize(new Dimension(400, 50));
+        setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
     }
 
-    public void setProcessorElement(ProcessorElement processorElement) {
-        this.processorElement = processorElement;
-    }
 
     @Override
     public void paint(Graphics g) {
@@ -35,7 +35,7 @@ public class ProcessorElementUi extends JPanel {
         Graphics2D graphics2D = (Graphics2D) g;
 
         String elementName = String.format("%s (%s)", processorElement.getName(), processorElement.getNumber());
-        graphics2D.drawString(elementName, 200, 30);
+        graphics2D.drawString(elementName, (int) (DEFAULT_WIDTH * 0.6), (int) (DEFAULT_HEIGHT * 0.6));
 
         if (processorElement.getState() != null) {
             g.drawString(processorElement.getState().getFactor().toString(), 20, 15);
